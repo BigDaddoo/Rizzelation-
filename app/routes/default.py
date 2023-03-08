@@ -5,3 +5,13 @@ from flask import render_template
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# This is for rendering the home page
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+# I think this is for rendering the aboutUs page
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
