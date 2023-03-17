@@ -31,6 +31,8 @@ class User(UserMixin, Document):
     email = EmailField()
     image = FileField()
     prononuns = StringField()
+    #Add a role field to the user class in data.py 
+    role = StringField()
 
     meta = {
         'ordering': ['lname','fname']

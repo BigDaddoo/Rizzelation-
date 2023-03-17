@@ -13,6 +13,8 @@ class ProfileForm(FlaskForm):
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image") 
     submit = SubmitField('Post')
+    #Add a SelectField (drop down list) to the ProfileForm in forms.py
+    role = SelectField('Role',choices=[("Rizzler","Rizzler")])
 
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
