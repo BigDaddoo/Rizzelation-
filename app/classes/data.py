@@ -33,6 +33,7 @@ class User(UserMixin, Document):
     prononuns = StringField()
     #Add a role field to the user class in data.py 
     role = StringField()
+    purpose = StringField()
 
     meta = {
         'ordering': ['lname','fname']
