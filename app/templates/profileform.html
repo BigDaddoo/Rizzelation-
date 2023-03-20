@@ -20,16 +20,22 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <!--Edit profileform.html to include the role field-->
+        <p>
+            {{ form.role.label }}<br>
+            {{ form.role() }}<br>
+            {% for error in form.role.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.purpose.label }}<br>
+            {{ form.purpose() }}<br>
+            {% for error in form.purpose.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
 
-            <!--Edit profileform.html to include the role field-->
-            <p>
-                {{ form.role.label }}<br>
-                {{ form.role() }}<br>
-                {% for error in form.role.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            
         <p>
             {{ form.image.label }}<br>
             {% if current_user.image %}
