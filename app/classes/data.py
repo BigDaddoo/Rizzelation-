@@ -77,8 +77,8 @@ class Rizzponse(Document):
     commentary = StringField()
 
     # This is the next feature for interactivity 
-    wRizz = intType()    
-    lRizz = intType()
+    wRizz = IntField()    
+    lRizz = IntField()
     meta = {
         'ordering': ['-createdate']
     }
