@@ -29,3 +29,6 @@ class CommentForm(FlaskForm):
 
 class RizzponseForm(FlaskForm):
     commentary = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Rizzponse')
+
+#!bruh
