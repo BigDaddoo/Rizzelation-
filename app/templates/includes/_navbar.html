@@ -1,32 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-light .bg-warning-subtle">
-  <div class="container-fluid mb-3">
-    <a class="navbar-brand .navbar-text display-1 font-weight-bold" href="/">Rizzelation</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffe09c;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="aboutus">Rizzelation</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 display-7" style="margin: 0% 37%;"> 
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/home">Rizz of the Day</a>
+          <a class="nav-link active" aria-current="page" href="home">Book of Rizz</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Another Link</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Rizz of the Day
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/">Question</a></li>
+            <li><a class="dropdown-item" href="#">Quotes</a></li>
+          </ul>
         </li>
-        <li>
-      </li> 
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         {% if current_user.is_anonymous %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-
-          </li>
+          </li>  <!--#! See some red-->
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/myprofile">
-              {{ current_user.gname }} 
+              {{ current_user.gname }}
             </a>
-            
+           
           </li>          
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
@@ -36,4 +43,4 @@
       </ul>
     </div>
   </div>
-</nav>  
+</nav> <!--#! See some red-->
