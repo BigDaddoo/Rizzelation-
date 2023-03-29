@@ -66,6 +66,15 @@ class Comment(Document):
         'ordering': ['-createdate']
     }
 
+class GrandQuestion(Document):
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()    
+    gQuestion = StringField()
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+
 class Rizzponse(Document):
     # Hopefully this will be automatically gotten 
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
@@ -76,9 +85,9 @@ class Rizzponse(Document):
     # This is what we are worried about now
     commentary = StringField()
 
-    # This is the next feature for interactivity 
-    wRizz = IntField()    
-    lRizz = IntField()
+    # This is the future feature for interactivity 
+    #wRizz = IntField()    
+    #lRizz = IntField()
     meta = {
         'ordering': ['-createdate']
     }

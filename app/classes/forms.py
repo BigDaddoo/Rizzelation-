@@ -28,7 +28,11 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Comment')
 
 class RizzponseForm(FlaskForm):
-    commentary = TextAreaField('Comment', validators=[DataRequired()])
+    commentary = TextAreaField('Rizzponse', validators=[DataRequired()])
     submit = SubmitField('Rizzponse')
+
+class GrandQuestionForm(FlaskForm):
+    gQuestion = TextAreaField('grandQuestion', validators=[DataRequired()])
+    submit = SubmitField('grandQuestion')
 
 #!bruh

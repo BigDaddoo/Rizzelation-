@@ -227,3 +227,18 @@ def rizzponseNew(rizzponseID):
     return render_template('rizzponseform.html',form=form,rizzponse=rizzponse) #! this is weird, might work
 #   return render_template('rizzponseform.html',form=form,blog=blog) 
 # #!bruh
+
+@app.route('/grandQuestion/new/<grandQuestionID>', methods=['GET', 'POST'])
+@login_required
+def grandQuestionNew(grandQuestionID):
+    grandQuestion = GrandQuestion.objects.get(id=grandQuestionID)
+    form = GrandQuestionForm()
+    if form.validate_on_submit():
+        newGrandQuestion = GradQuestion(
+            author = current_user.id,
+            grandQuestion = grandQuestionID,
+            gQuestion = form.gQuestion.data
+        )
+        newGrandQuestion.save()
+        return redirect(url_for('grandquestion',grandQuestionID=grandQuestionID))
+    return render_template('commentform.html',form=form,blog=blog)
