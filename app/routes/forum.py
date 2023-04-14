@@ -167,60 +167,46 @@ def blogEdit(blogID):
 # about how comments are related to blogs.  Additionally, take a look at data.py to see how the
 # relationship is defined in the Blog and the Comment collections.
 
-@app.route('/comment/new/<blogID>', methods=['GET', 'POST'])
-@login_required
-def commentNew(blogID):
-    blog = Blog.objects.get(id=blogID)
-    form = CommentForm()
-    if form.validate_on_submit():
-        newComment = Comment(
-            author = current_user.id,
-            blog = blogID,
-            content = form.content.data
-        )
-        newComment.save()
-        return redirect(url_for('blog',blogID=blogID))
-    return render_template('commentform.html',form=form,blog=blog)
+#@app.route('/comment/new/<blogID>', methods=['GET', 'POST'])
+#@login_required
+#def commentNew(blogID):
+#    blog = Blog.objects.get(id=blogID)
+#    form = CommentForm()
+#    if form.validate_on_submit():
+#        newComment = Comment(
+#            author = current_user.id,
+#            blog = blogID,
+#            content = form.content.data
+#        )
+#        newComment.save()
+#        return redirect(url_for('blog',blogID=blogID))
+#    return render_template('commentform.html',form=form,blog=blog)
+#
+#@app.route('/comment/edit/<commentID>', methods=['GET', 'POST'])
+#@login_required
+#def commentEdit(commentID):
+#    editComment = Comment.objects.get(id=commentID)
+#    if current_user != editComment.author:
+#        flash("You can't edit a comment you didn't write.")
+#        return redirect(url_for('blog',blogID=editComment.blog.id))
+#    blog = Bog.objects.get(id=editComment.blog.id)
+#    form = CommentForm()
+#    if form.validate_on_submit():
+#        editComment.update(
+#            content = form.content.data,
+#            modifydate = dt.datetime.utcnow
+#        )
+#        return redirect(url_for('blog',blogID=editComment.blog.id))
+#
+#    form.content.data = editComment.content
+#
+#    return render_template('commentform.html',form=form,blog=blog)   
+#
+#@app.route('/comment/delete/<commentID>')
+#@login_required
+#def commentDelete(commentID): 
+#    deleteComment = Comment.objects.get(id=commentID)
+#    deleteComment.delete()
+#    flash('The comments was deleted.')
+#    return redirect(url_for('blog',blogID=deleteComment.blog.id)) 
 
-@app.route('/comment/edit/<commentID>', methods=['GET', 'POST'])
-@login_required
-def commentEdit(commentID):
-    editComment = Comment.objects.get(id=commentID)
-    if current_user != editComment.author:
-        flash("You can't edit a comment you didn't write.")
-        return redirect(url_for('blog',blogID=editComment.blog.id))
-    blog = Bog.objects.get(id=editComment.blog.id)
-    form = CommentForm()
-    if form.validate_on_submit():
-        editComment.update(
-            content = form.content.data,
-            modifydate = dt.datetime.utcnow
-        )
-        return redirect(url_for('blog',blogID=editComment.blog.id))
-
-    form.content.data = editComment.content
-
-    return render_template('commentform.html',form=form,blog=blog)   
-
-@app.route('/comment/delete/<commentID>')
-@login_required
-def commentDelete(commentID): 
-    deleteComment = Comment.objects.get(id=commentID)
-    deleteComment.delete()
-    flash('The comments was deleted.')
-    return redirect(url_for('blog',blogID=deleteComment.blog.id)) 
-
-@app.route('/grandQuestion/new/<grandQuestionID>', methods=['GET', 'POST'])
-@login_required
-def grandQuestionNew(grandQuestionID):
-    grandQuestion = GrandQuestion.objects.get(id=grandQuestionID)
-    form = GrandQuestionForm()
-    if form.validate_on_submit():
-        newGrandQuestion = GradQuestion(
-            author = current_user.id,
-            grandQuestion = grandQuestionID,
-            gQuestion = form.gQuestion.data
-        )
-        newGrandQuestion.save()
-        return redirect(url_for('grandquestion',grandQuestionID=grandQuestionID))
-    return render_template('commentform.html',form=form,blog=blog)
