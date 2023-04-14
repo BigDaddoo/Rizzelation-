@@ -15,7 +15,7 @@ import datetime as dt
 def grandQuestionList():
     # This retrieves all of the 'blogs' that are stored in MongoDB and places them in a
     # mongoengine object as a list of dictionaries name 'blogs'.
-    grandQuestions = GrandQuestions.objects()
+    grandQuestions = GrandQuestion.objects()
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.
