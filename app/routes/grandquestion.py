@@ -8,28 +8,28 @@ from flask_login import login_required
 import datetime as dt
 
 # This is the route to list all blogs
-@app.route('/grandquestion/list')
-@app.route('/grandquestions')
+@app.route('/grandQuestion/list')
+@app.route('/grandQuestions')
 # This means the user must be logged in to see this page
 @login_required
-def grandquestionList():
+def grandQuestionList():
     # This retrieves all of the 'blogs' that are stored in MongoDB and places them in a
     # mongoengine object as a list of dictionaries name 'blogs'.
-    grandquestions = GrandQuestions.objects()
+    grandQuestions = GrandQuestions.objects()
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.
-    return render_template('grandquestions.html',grandquestions=grandquestions)
+    return render_template('grandQuestions.html',grandQuestions=grandQuestions)
 
 # This route will get one specific blog and any comments associated with that blog.  
 # The blogID is a variable that must be passsed as a parameter to the function and 
 # can then be used in the query to retrieve that blog from the database. This route 
 # is called when the user clicks a link on bloglist.html template.
 # The angle brackets (<>) indicate a variable. 
-@app.route('/grandquestion/<grandQuestionID>')
+@app.route('/grandQuestion/<grandQuestionID>')
 # This route will only run if the user is logged in.
 @login_required
-def grandquestion(grandQuestionID):
+def grandQuestion(grandQuestionID):
     # retrieve the blog using the blogID
     thisgrandQuestion = GrandQuestion.objects.get(id=grandQuestionID)
     # If there are no comments the 'comments' object will have the value 'None'. Comments are 
@@ -37,15 +37,15 @@ def grandquestion(grandQuestionID):
     # there is a field on the comment collection called 'blog' that is a reference the Blog
     # document it is related to.  You can use the blogID to get the blog and then you can use
     # the blog object (thisBlog in this case) to get all the comments.
-    theseGrandQuestion = GrandQuestion.objects(grandquestion=thisGrandQuestion)
+    theseGrandQuestion = GrandQuestion.objects(grandQuestion=thisGrandQuestion)
     # Send the blog object and the comments object to the 'blog.html' template.
-    return render_template('grandquestion.html',grandquestion=thisGrandQuestion,grandquestions=theseGrandQuestion)
+    return render_template('grandQuestion.html',grandQuestion=thisGrandQuestion,grandQuestions=theseGrandQuestion)
 
 # This route will delete a specific blog.  You can only delete the blog if you are the author.
 # <blogID> is a variable sent to this route by the user who clicked on the trash can in the 
 # template 'blog.html'. 
 # TODO add the ability for an administrator to delete blogs. 
-@app.route('/grandquestion/delete/<grandQuestionID>')
+@app.route('/grandQuestion/delete/<grandQuestionID>')
 # Only run this route if the user is logged in.
 @login_required
 def grandQuestionDelete(grandQuestionID):
@@ -62,9 +62,9 @@ def grandQuestionDelete(grandQuestionID):
         # if the user is not the author tell them they were denied.
         flash("You can't delete a Grand Question you don't own.")
     # Retrieve all of the remaining blogs so that they can be listed.
-    grandquestions = GrandQuestion.objects()  
+    grandQuestions = GrandQuestion.objects()  
     # Send the user to the list of remaining blogs.
-    return render_template('grandquestions.html',grandquestions=grandquestions)
+    return render_template('grandQuestions.html',grandQuestions=grandQuestions)
 
 # This route actually does two things depending on the state of the if statement 
 # 'if form.validate_on_submit()'. When the route is first called, the form has not 
@@ -73,7 +73,7 @@ def grandQuestionDelete(grandQuestionID):
 # is True and this route creates the new blog based on what the user put in the form.
 # Because this route includes a form that both gets and blogs data it needs the 'methods'
 # in the route decorator.
-@app.route('/grandquestion/new', methods=['GET', 'POST'])
+@app.route('/grandQuestion/new', methods=['GET', 'POST'])
 # This means the user must be logged in to see this page
 @login_required
 # This is a function that is run when the user requests this route.
@@ -107,20 +107,20 @@ def grandQuestionNew():
         # to send them to that blog. url_for takes as its argument the function name
         # for that route (the part after the def key word). You also need to send any
         # other values that are needed by the route you are redirecting to.
-        return redirect(url_for('grandquestion',grandQuestionID=newGrandQuestion.id))
+        return redirect(url_for('grandQuestion',grandQuestionID=newGrandQuestion.id))
 
     # if form.validate_on_submit() is false then the user either has not yet filled out
     # the form or the form had an error and the user is sent to a blank form. Form errors are 
     # stored in the form object and are displayed on the form. take a look at blogform.html to 
     # see how that works.
-    return render_template('grandquestionform.html',form=form)
+    return render_template('grandQuestionform.html',form=form)
 
 
 # This route enables a user to edit a blog.  This functions very similar to creating a new 
 # blog except you don't give the user a blank form.  You have to present the user with a form
 # that includes all the values of the original blog. Read and understand the new blog route 
 # before this one. 
-@app.route('/grandquestion/edit/<grandQuestionID>', methods=['GET', 'POST'])
+@app.route('/grandQuestion/edit/<grandQuestionID>', methods=['GET', 'POST'])
 @login_required
 def grandQuestionEdit(grandQuestionID):
     editGrandQuestion = GrandQuestion.objects.get(id=blogID)
@@ -142,7 +142,7 @@ def grandQuestionEdit(grandQuestionID):
             modify_date = dt.datetime.utcnow
         )
         # After updating the document, send the user to the updated blog using a redirect.
-        return redirect(url_for('grandquestion',grandQuestionID=grandQuestionID))
+        return redirect(url_for('grandQuestion',grandQuestionID=grandQuestionID))
 
     # if the form has NOT been submitted then take the data from the editBlog object
     # and place it in the form object so it will be displayed to the user on the template.
@@ -153,7 +153,7 @@ def grandQuestionEdit(grandQuestionID):
 
     # Send the user to the blog form that is now filled out with the current information
     # from the form.
-    return render_template('grandquestionform.html',form=form)
+    return render_template('grandQuestionform.html',form=form)
 
 #####
 # the routes below are the CRUD for the comments that are related to the blogs. This
@@ -175,7 +175,7 @@ def commentNew(grandQuestionID):
             content = form.content.data
         )
         newComment.save()
-        return redirect(url_for('grandquestion',grandQuestionID=grandQuestionID))
+        return redirect(url_for('grandQuestion',grandQuestionID=grandQuestionID))
     return render_template('commentform.html',form=form,grandQuestion=grandQuestion)
 
 @app.route('/comment/edit/<commentID>', methods=['GET', 'POST'])
@@ -184,7 +184,7 @@ def commentEdit(commentID):
     editComment = Comment.objects.get(id=commentID)
     if current_user != editComment.author:
         flash("You can't edit a comment you didn't write.")
-        return redirect(url_for('grandquestion',grandQuestionID=editComment.grandQuestion.id))
+        return redirect(url_for('grandQuestion',grandQuestionID=editComment.grandQuestion.id))
     grandQuestion = grandQuestion.objects.get(id=editComment.grandQuestion.id)
     form = CommentForm()
     if form.validate_on_submit():
@@ -192,7 +192,7 @@ def commentEdit(commentID):
             content = form.content.data,
             modifydate = dt.datetime.utcnow
         )
-        return redirect(url_for('grandquestion',grandQuestionID=editComment.grandQuestion.id))
+        return redirect(url_for('grandQuestion',grandQuestionID=editComment.grandQuestion.id))
 
     form.content.data = editComment.content
 
@@ -204,5 +204,5 @@ def commentDelete(commentID):
     deleteComment = Comment.objects.get(id=commentID)
     deleteComment.delete()
     flash('The comments was deleted.')
-    return redirect(url_for('grandquestion',grandQuestionID=deleteComment.grandQuestion.id)) 
+    return redirect(url_for('grandQuestion',grandQuestionID=deleteComment.grandQuestion.id)) 
 
