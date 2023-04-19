@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-4">
+        <h1 class="display-1">All Grand Questions</h1>
+    </div>
+    <div class="col">
+        <a href="/grandQuestion/new" class="btn btn-primary btn-sm mt-5" role="button">New Grand Question</a>
+    </div>
+</div>
+
+{% if grandQuestions %}
+    {% for grandQuestion in grandQuestions %}
+        <div class="row border-bottom">
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">Date</h3>
+                {% endif %}
+
+                <a href="/grandQuestion/{{grandQuestion.id}}">
+                    {{moment(grandQuestion.create_date).calendar()}}
+                </a>
+            </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">User</h3>
+                {% endif %}
+                {{grandQuestion.author.fname}} {{grandQuestion.author.lname}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Subject</h3>
+                {% endif %}
+                {{grandQuestion.subject}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1>No Grand Questions</h1>
+{% endif %}
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
