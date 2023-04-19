@@ -2,8 +2,8 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import Blog, Comment
-from app.classes.forms import BlogForm, CommentForm
+from app.classes.data import GrandQuestion, Comment
+from app.classes.forms import GrandQuestionForm, CommentForm
 from flask_login import login_required
 import datetime as dt
 
@@ -15,7 +15,7 @@ import datetime as dt
 def grandQuestionList():
     # This retrieves all of the 'blogs' that are stored in MongoDB and places them in a
     # mongoengine object as a list of dictionaries name 'blogs'.
-    grandQuestions = grandQuestion.objects()
+    grandQuestions = GrandQuestion.objects()
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.

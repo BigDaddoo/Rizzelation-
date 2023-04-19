@@ -4,41 +4,41 @@
 
 <div class="row">
     <div class="col-4">
-        <h1 class="display-1">All Blogs</h1>
+        <h1 class="display-1">All Grand Question</h1>
     </div>
     <div class="col">
-        <a href="/blog/new" class="btn btn-primary btn-sm mt-5" role="button">New Blog</a>
+        <a href="/grandQuestion/new" class="btn btn-primary btn-sm mt-5" role="button">New Grand Question</a>
     </div>
 </div>
 
-{% if blogs %}
-    {% for blog in blogs %}
+{% if grandQuestions %}
+    {% for grandQuestion in grandQuestions %}
         <div class="row border-bottom">
             <div class="col-2">
                 {% if loop.index == 1 %}
                 <h3 class="display-5">Date</h3>
                 {% endif %}
 
-                <a href="/blog/{{blog.id}}">
-                    {{moment(blog.create_date).calendar()}}
+                <a href="/grandQuestion/{{grandQuestion.id}}">
+                    {{moment(grandQuestion.create_date).calendar()}}
                 </a>
             </div>
             <div class="col-2">
                 {% if loop.index == 1 %}
                 <h3 class="display-5">User</h3>
                 {% endif %}
-                {{blog.author.fname}} {{blog.author.lname}}
+                {{grandQuestion.author.fname}} {{grandQuestion.author.lname}}
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Subject</h3>
                 {% endif %}
-                {{blog.subject}}
+                {{grandQuestion.subject}}
             </div>
         </div>
     {% endfor %}
 {% else %}
-    <h1>No Blogs</h1>
+    <h1>No Grand Questions</h1>
 {% endif %}
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
