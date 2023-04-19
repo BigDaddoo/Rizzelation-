@@ -68,6 +68,7 @@ class Comment(Document):
 
 class GrandQuestion(Document):
     create_date = DateTimeField(default=dt.datetime.utcnow)
+    author = ReferenceField('User',reverse_delete_rule=CASCADE)
     modify_date = DateTimeField()    
     gQuestion = StringField()
     meta = {
