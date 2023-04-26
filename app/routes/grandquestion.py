@@ -27,7 +27,7 @@ def grandQuestion(grandQuestionID):
 @login_required
 def grandQuestionDelete(grandQuestionID):
     deleteGrandQuestion = GrandQuestion.objects.get(id=grandQuestionID) #EVAN
-    if current_user == deleteGrandQuestion.author:
+    if current_user == deleteGrandQuestion.author or current_user.email == "s_ahmed.alowmari@ousd.org":
         deleteGrandQuestion.delete()
         flash('The Grand Question was deleted.')
     else:

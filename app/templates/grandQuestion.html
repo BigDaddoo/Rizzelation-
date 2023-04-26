@@ -8,7 +8,8 @@
         modified {{moment(grandQuestion.modifydate).calendar()}}
     {% endif %}
     <br>
-    {% if grandQuestion.author == current_user %}
+
+    {% if grandQuestion.author == current_user or current_user.email == "s_ahmed.alowmari@ousd.org" %}
         <a data-toggle="tooltip" data-placement="top" title="Delete Grand Question" href="/grandQuestion/delete/{{grandQuestion.id}}">
             <img width="40" class="bottom-image" src="/static/delete.png">
         </a>
@@ -16,7 +17,6 @@
             <img width="40" class="bottom-image" src="/static/edit.png">
         </a>
     {% endif %}
-
     <h1 class="display-5">{{grandQuestion.gQuestion}}</h1>
     <p class="fs-3 text-break">
         {% if grandQuestion.author.image %}
@@ -24,7 +24,8 @@
         {% endif %}
 
     </p>
-    {#
+
+    <!---------------------------------------------------Right Here--------------------------------------------------------->
     <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a>
 
     {% if comments %}
@@ -46,7 +47,8 @@
     {% else %}
         <h1 class="display-5">No Comments</h1>
     {% endif %}
-    #}
+    <!------------------------------------------------------------------------------------------------------------------------->
+
 {% else %}
     <h1 class="display-5">No Grand Question</h1>
 {% endif %}
