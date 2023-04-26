@@ -13,12 +13,14 @@ import datetime as dt
 def grandQuestionList():
     grandQuestions = GrandQuestion.objects()
     return render_template('grandQuestions.html',grandQuestions=grandQuestions)
+
+
 @app.route('/grandQuestion/<grandQuestionID>')
 @login_required
 def grandQuestion(grandQuestionID):
     thisGrandQuestion = GrandQuestion.objects.get(id=grandQuestionID) #EVAN
-    theseComments = Comment.objects(grandQuestion=thisGrandQuestion)
-    return render_template('grandQuestion.html',grandQuestion=thisGrandQuestion,comments=theseComments)
+    #theseComments = Comment.objects(grandQuestion=thisGrandQuestion)
+    return render_template('grandQuestion.html',grandQuestion=thisGrandQuestion,comments=None)
 
 # TODO add the ability for an administrator to delete blogs. 
 @app.route('/grandQuestion/delete/<grandQuestionID>')
@@ -50,7 +52,7 @@ def grandQuestionNew():
 @app.route('/grandQuestion/edit/<grandQuestionID>', methods=['GET', 'POST'])
 @login_required
 def grandQuestionEdit(grandQuestionID):
-    editGrandQuestion = GrandQuestion.objects.get(id=blogID)
+    editGrandQuestion = GrandQuestion.objects.get(id=grandQuestionID)
     if current_user != editGrandQuestion.author:
         flash("You can't edit a Grand Question you don't own.")
         return redirect(url_for('grandQuestion',grandQuestionID=grandQuestionID))
@@ -61,9 +63,9 @@ def grandQuestionEdit(grandQuestionID):
             modify_date = dt.datetime.utcnow
         )
         return redirect(url_for('grandQuestion',grandQuestionID=grandQuestionID))
-    form.subject.data = editGrandQuestion.subject
-    form.content.data = editGrandQuestion.content
-    form.tag.data = editGrandQuestion.tag
+    #form.subject.data = editGrandQuestion.subject
+    #form.content.data = editGrandQuestion.content
+    #form.tag.data = editGrandQuestion.tag
     return render_template('grandQuestionform.html',form=form)
 
 @app.route('/comment/new/<grandQuestionID>', methods=['GET', 'POST'])

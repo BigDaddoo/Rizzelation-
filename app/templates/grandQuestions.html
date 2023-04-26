@@ -27,13 +27,13 @@
                 {% if loop.index == 1 %}
                 <h3 class="display-5">User</h3>
                 {% endif %}
-                {{grandQuestion.author.fname}} {{grandQuestion.author.lname}}
+                {{grandQuestion.author.role}} {{grandQuestion.author.fname}} {{grandQuestion.author.lname}}
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
-                    <h3 class="display-5">Subject</h3>
+                    <h3 class="display-5">Question</h3>
                 {% endif %}
-                {{grandQuestion.subject}}
+                {{grandQuestion.gQuestion}}
             </div>
         </div>
     {% endfor %}
