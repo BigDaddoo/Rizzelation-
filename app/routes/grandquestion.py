@@ -20,8 +20,8 @@ def grandQuestionList():
 @login_required
 def grandQuestion(grandQuestionID):
     thisGrandQuestion = GrandQuestion.objects.get(id=grandQuestionID) #EVAN
-    #theseComments = Comment.objects(grandQuestion=thisGrandQuestion)
-    return render_template('grandQuestion.html',grandQuestion=thisGrandQuestion,comments=None)
+    theseComments = Comment.objects(grandQuestion=thisGrandQuestion)
+    return render_template('grandQuestion.html',grandQuestion=thisGrandQuestion,comments=theseComments)
 
 # TODO add the ability for an administrator to delete blogs. 
 @app.route('/grandQuestion/delete/<grandQuestionID>')

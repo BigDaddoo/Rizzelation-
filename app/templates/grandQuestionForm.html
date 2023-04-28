@@ -4,13 +4,13 @@
         <h1></h1>
 
         <form method=post>
-        {{ form.hidden_tag() }}
-            
+            {{ form.hidden_tag() }}
             <p>
                 <!--{{ form.gQuestion.label }} <br>-->
                 What will be the Grand Question?
                 <br>
-                {{ form.gQuestion(size=64) }}
+                {{form.gQuestion(size=64) }}
+                
                 <!--List the errors for this field-->
                 {% for error in form.gQuestion.errors %}
                     <span style="color: red;">[{{ error }}]</span>
