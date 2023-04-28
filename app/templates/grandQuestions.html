@@ -2,12 +2,13 @@
 
 {% block body %}
 
-<div class="row">
+<div class="row"> 
     <div class="col-4">
         <h1 class="display-4">All Grand Questions</h1>
     </div>
+    <p>
     <div class="col">
-        <a href="/grandQuestion/new" class="btn btn-primary btn-sm mt-5" role="button">New Grand Question</a>
+        <a href="/grandQuestion/new" class="btn btn-warning btn-sm mt-5" role="button">New Grand Question</a>
     </div>
 </div>
 
@@ -38,7 +39,7 @@
         </div>
     {% endfor %}
 {% else %}
-    <h1>No Grand Questions</h1>
+    <h2>No Grand Questions</h2>
 {% endif %}
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

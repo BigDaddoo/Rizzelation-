@@ -26,26 +26,28 @@
     </p>
 
     <!---------------------------------------------------Right Here--------------------------------------------------------->
-    <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a>
 
     {% if comments %}
     <h1 class="display-5">Comments</h1>
+    <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-warning btn-sm" role="button">New Comment</a>
+    <p></p>
     {% for comment in comments %}
         {% if current_user == comment.author %}
             <a href="/comment/delete/{{comment.id}}"><img width="20" src="/static/delete.png"></a> 
             <a href="/comment/edit/{{comment.id}}"><img width="20" src="/static/edit.png"></a>
         {% endif %}
-        {{moment(comment.create_date).calendar()}} {{comment.author.username}} 
+        {{moment(comment.create_date).calendar()}} {{comment.author.fname}} 
         {% if comment.modifydate %}
             modified {{moment(comment.modifydate).calendar()}}
         {% endif %}
         <br>
-        <p class="fs-3">
+        <p class="fs-6">
             {{comment.content}}
         </p>
     {% endfor %}
     {% else %}
-        <h1 class="display-5">No Comments</h1>
+        <h1 class="h4">No Comments</h1>
+        <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-warning btn-sm" role="button">New Comment</a>
     {% endif %}
     <!------------------------------------------------------------------------------------------------------------------------->
 
