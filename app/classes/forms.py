@@ -15,8 +15,7 @@ class ProfileForm(FlaskForm):
     image = FileField("Image") 
     submit = SubmitField('Post')
     #Add a SelectField (drop down list) to the ProfileForm in forms.py
-    role = SelectField('Role',choices=[("Rizzler","Rizzler"), ("Rizziple", "Rizziple")])
-    #role = SelectField('Role',choices=[("Rizzler","Rizzler"),("Rizziple", "Rizziple"), ("Grand Rizzard","Grand Rizzard")])
+    role = SelectField('Role',choices=[("Rizzler","Rizzler"),("Rizziple", "Rizziple"), ("Rizzard","Rizzard")])
     purpose = SelectField('Purpose',choices=[("Get Some Rizz","Get Some Rizz"),("Help Others Get Rizz","Help Others Get Rizz"),("Other","Other")])
 
 class CommentForm(FlaskForm):

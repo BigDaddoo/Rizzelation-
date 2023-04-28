@@ -19,7 +19,7 @@ import datetime as dt
 import jwt
 from time import time
 from bson.objectid import ObjectId
-
+ 
 class User(UserMixin, Document):
     createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
     gid = StringField(sparse=True, unique=True)
