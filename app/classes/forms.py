@@ -11,6 +11,7 @@ from wtforms import StringField, SubmitField, TextAreaField, IntegerField, Selec
 class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
+    username = StringField('Username')
     image = FileField("Image") 
     submit = SubmitField('Post')
     #Add a SelectField (drop down list) to the ProfileForm in forms.py

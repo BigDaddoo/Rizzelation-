@@ -15,6 +15,7 @@
 {% if grandQuestions %}
     {% for grandQuestion in grandQuestions %}
         <div class="row border-bottom">
+
             <div class="col-2">
                 {% if loop.index == 1 %}
                 <h3 class="display-6">Date</h3>
@@ -24,18 +25,28 @@
                     {{moment(grandQuestion.create_date).calendar()}}
                 </a>
             </div>
+
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-6">Role</h3>
+                {% endif %}
+                {{grandQuestion.author.role}}
+            </div>
+
             <div class="col-2">
                 {% if loop.index == 1 %}
                 <h3 class="display-6">User</h3>
                 {% endif %}
-                {{grandQuestion.author.role}} {{grandQuestion.author.fname}} {{grandQuestion.author.lname}}
+                {{grandQuestion.author.username}}
             </div>
+
             <div class="col">
                 {% if loop.index == 1 %}
                     <h3 class="display-6">Question</h3>
                 {% endif %}
                 {{grandQuestion.gQuestion}}
             </div>
+
         </div>
     {% endfor %}
 {% else %}
