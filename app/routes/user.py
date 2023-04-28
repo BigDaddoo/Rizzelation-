@@ -12,7 +12,7 @@ from flask_login import current_user
 # This line tells the user that they cannot access this without being loggedin
 @login_required
 # This is the function that is run when the route is triggered
-def myProfile():
+def myProfile(): 
     # This sends the user to their profile page which renders the 'profilemy.html' template
     return render_template('profilemy.html')
 
