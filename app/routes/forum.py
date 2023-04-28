@@ -1,3 +1,4 @@
+#[
 # These routes are an example of how to use data, forms and routes to create
 # a forum where a blogs and comments on those blogs can be
 # Created, Read, Updated or Deleted (CRUD)
@@ -208,5 +209,4 @@ def blogEdit(blogID):
 #    deleteComment = Comment.objects.get(id=commentID)
 #    deleteComment.delete()
 #    flash('The comments was deleted.')
-#    return redirect(url_for('blog',blogID=deleteComment.blog.id)) 
-
+#    return redirect(url_for('blog',blogID=deleteComment.blog.id)) ]#

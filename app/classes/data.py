@@ -38,19 +38,7 @@ class User(UserMixin, Document):
     meta = {
         'ordering': ['lname','fname']
     }
-    
-class Blog(Document):
-    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
-    subject = StringField()
-    content = StringField()
-    tag = StringField()
-    create_date = DateTimeField(default=dt.datetime.utcnow)
-    modify_date = DateTimeField()
 
-    meta = {
-        'ordering': ['-createdate']
-    }
-    
 class GrandQuestion(Document):
     create_date = DateTimeField(default=dt.datetime.utcnow)
     author = ReferenceField('User',reverse_delete_rule=CASCADE)

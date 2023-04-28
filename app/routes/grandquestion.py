@@ -1,3 +1,4 @@
+
 from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
@@ -109,5 +110,4 @@ def commentDelete(commentID):
     deleteComment = Comment.objects.get(id=commentID)
     deleteComment.delete()
     flash('The comments was deleted.')
-    return redirect(url_for('grandQuestion',grandQuestionID=deleteComment.grandQuestion.id)) 
-
+    return redirect(url_for('grandQuestion',grandQuestionID=deleteComment.grandQuestion.id))

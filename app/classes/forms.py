@@ -18,12 +18,6 @@ class ProfileForm(FlaskForm):
     #role = SelectField('Role',choices=[("Rizzler","Rizzler"),("Grand Rizzard","Grand Rizzard")])
     purpose = SelectField('Purpose',choices=[("Get Some Rizz","Get Some Rizz"),("Help Others Get Rizz","Help Others Get Rizz"),("Other","Other")])
 
-class BlogForm(FlaskForm):
-    subject = StringField('Subject', validators=[DataRequired()])
-    content = TextAreaField('Blog', validators=[DataRequired()])
-    tag = StringField('Tag', validators=[DataRequired()])
-    submit = SubmitField('Blog')
-
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
