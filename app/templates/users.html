@@ -1,0 +1,13 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+
+{% extends 'base.html' %}
+
+<h1 class="display-5">The Users</h1>
+
+{% block body %}
+{% for user in users %}
+    {{user.fname}}
+{% endfor %}
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

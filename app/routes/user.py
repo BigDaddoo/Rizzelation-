@@ -5,6 +5,11 @@ from app.classes.data import User
 from app.classes.forms import ProfileForm
 from flask_login import current_user
 
+@app.route('/users')
+def users():
+    users = User.objects()
+    return render_template('users.html',users=users)
+
 # These routes and functions are for accessing and editing user profiles.
 
 # The first line is what listens for the user to type 'myprofile'

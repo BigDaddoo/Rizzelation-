@@ -15,7 +15,5 @@ def home():
 @app.route('/aboutus')
 def aboutus():
     return render_template('aboutus.html')
+    
 
-@app.route('/controlroom')
-def aboutus():
-    return render_template('controlroom.html')
