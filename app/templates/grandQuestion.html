@@ -3,7 +3,7 @@
 {% block body %}
 
 {% if grandQuestion %}
-    {{moment(grandQuestion.create_date).calendar()}} by {{grandQuestion.author.fname}} {{grandQuestion.author.lname}} 
+    {{moment(grandQuestion.create_date).calendar()}} by {{grandQuestion.author.username}}
     {% if grandQuestion.modifydate %}
         modified {{moment(grandQuestion.modifydate).calendar()}}
     {% endif %}
@@ -27,12 +27,15 @@
 
     <!---------------------------------------------------Right Here--------------------------------------------------------->
 
+    <!--warriors-->
     {% if comments %}
     <h1 class="display-5">Comments</h1>
-    <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-warning btn-sm" role="button">New Comment</a>
+    {% if current_user.cRizztriction == False %}
+        <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-warning btn-sm" role="button">New Comment</a>
+    {% endif %}
     <p></p>
     {% for comment in comments %}
-        {% if current_user == comment.author %}
+        {% if current_user == comment.author or current_user.email == "s_ahmed.alowmari@ousd.org" %}
             <a href="/comment/delete/{{comment.id}}"><img width="20" src="/static/delete.png"></a> 
             <a href="/comment/edit/{{comment.id}}"><img width="20" src="/static/edit.png"></a>
         {% endif %}
@@ -47,7 +50,9 @@
     {% endfor %}
     {% else %}
         <h1 class="h4">No Comments</h1>
-        <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-warning btn-sm" role="button">New Comment</a>
+        {% if current_user.cRizztriction == False %}
+            <a href="/comment/new/{{grandQuestion.id}}" class="btn btn-warning btn-sm" role="button">New Comment</a>
+        {% endif %}
     {% endif %}
     <!------------------------------------------------------------------------------------------------------------------------->
 

@@ -3,7 +3,7 @@
 {% block body %}
 <h1 class="display-1">
     My Profile
-    <a href="/myprofile/edit">
+    <a href="/myprofile/edit"> 
         <img width="40" src="/static/edit.png">
     </a>
 </h1>
@@ -15,7 +15,7 @@
             <img class="img-thumbnail" width = "100" src="/static/bdog.png">
         {% endif %} 
     </div>
-    <div class="col display-5">
+    <div class="col display-6">
         {% if current_user.fname and current_user.lname %}
             Name: {{current_user.fname}}  {{current_user.lname}} <br>
         {% else %}
@@ -25,6 +25,12 @@
         Email: {{current_user.email}} <br>
         Role: {{current_user.role}} <br>
         Purpose: {{current_user.purpose}} <br>
+            {% if current_user.email == "s_ahmed.alowmari@ousd.org" %}
+            <p></p>
+            qRizztriction: {{current_user.qRizztriction}} <br>
+            cRizztriction: {{current_user.cRizztriction}} <br>
+            {% endif %}
+        <p></p>
     </div>
 </div>
 <br>

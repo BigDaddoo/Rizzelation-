@@ -1,13 +1,58 @@
-<!-- This is a blank template.  You can copy this to make a new template page. -->
-
 {% extends 'base.html' %}
 
 <h1 class="display-5">The Users</h1>
 
 {% block body %}
-{% for user in users %}
-    {{user.fname}}
-{% endfor %}
 
+{% if current_user.email == "s_ahmed.alowmari@ousd.org" %}
+    {% for user in users %}
+        <div class="row border-bottom">
+
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-7">Role</h3>
+                {% endif %}
+                {{user.username}}
+            </div>
+
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-7">User</h3>
+                {% endif %}
+                {{user.gname}}
+            </div>
+
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                    <h3 class="display-7">qRizztriction</h3>
+                {% endif %}
+                {{user.qRizztriction}}
+            </div>
+
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                    <h3 class="display-7">cRizztriction</h3>
+                {% endif %}
+                {{user.cRizztriction}}
+            </div>
+            
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-7">Rizztrict</h3>
+                {% endif %}
+                <a href="/user/{{user.id}}">
+                    Link
+                </a>
+            </div>
+
+        </div>
+    {% endfor %}
+{% else %}   
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border m-5 text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+{% endif %}
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

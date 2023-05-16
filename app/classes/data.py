@@ -35,6 +35,9 @@ class User(UserMixin, Document):
     role = StringField()
     purpose = StringField()
 
+    qRizztriction = BooleanField()
+    cRizztriction = BooleanField()
+
     meta = {
         'ordering': ['lname','fname']
     }

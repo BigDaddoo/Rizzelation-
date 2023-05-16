@@ -2,13 +2,16 @@
 
 {% block body %}
 
+<!--warriors-->
 <div class="row"> 
     <div class="col-4">
         <h1 class="display-4">All Grand Questions</h1>
     </div>
     <p>
     <div class="col">
+        {% if current_user.qRizztriction == False %}
         <a href="/grandQuestion/new" class="btn btn-warning btn-sm mt-5" role="button">New Grand Question</a>
+        {% endif %}
     </div>
 </div>
 

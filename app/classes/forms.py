@@ -17,6 +17,21 @@ class ProfileForm(FlaskForm):
     #Add a SelectField (drop down list) to the ProfileForm in forms.py
     role = SelectField('Role',choices=[("Rizzler","Rizzler"),("Rizziple", "Rizziple"), ("Rizzard","Rizzard")])
     purpose = SelectField('Purpose',choices=[("Get Some Rizz","Get Some Rizz"),("Help Others Get Rizz","Help Others Get Rizz"),("Other","Other")])
+    qRizztriction = BooleanField('Question Rizztriction')
+    cRizztriction = BooleanField('Comment Rizztriction')
+
+    #abuse
+class TheirProfileForm(FlaskForm):
+    fname = StringField('First Name', validators=[DataRequired()])
+    lname = StringField('Last Name', validators=[DataRequired()]) 
+    username = StringField('Username')
+    image = FileField("Image") 
+    submit = SubmitField('Post')
+    #Add a SelectField (drop down list) to the ProfileForm in forms.py
+    role = SelectField('Role',choices=[("Rizzler","Rizzler"),("Rizziple", "Rizziple"), ("Rizzard","Rizzard")])
+    purpose = SelectField('Purpose',choices=[("Get Some Rizz","Get Some Rizz"),("Help Others Get Rizz","Help Others Get Rizz"),("Other","Other")])
+    qRizztriction = BooleanField('Question Rizztriction')
+    cRizztriction = BooleanField('Comment Rizztriction')
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
@@ -25,5 +40,3 @@ class CommentForm(FlaskForm):
 class GrandQuestionForm(FlaskForm):
     gQuestion = TextAreaField('GrandQuestion', validators=[DataRequired()])
     submit = SubmitField('GrandQuestion')
-
-#!bruh

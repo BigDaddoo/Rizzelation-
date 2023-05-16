@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffe09c;">
 -->
   <div class="container-fluid">
-    <a class="navbar-brand" href="aboutus">Rizzelation</a>
+    <a class="navbar-brand text-white" href="aboutus">Rizzelation</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,7 +19,9 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/grandQuestions">Question</a></li>
             <li><a class="dropdown-item" href="">Quotes</a></li>
-            <li><a class="dropdown-item" href="/controlroom">Control Room</a></li>
+              {% if current_user.email == "s_ahmed.alowmari@ousd.org" %}
+              <li><a class="dropdown-item" href="users">Users</a></li>
+              {% endif %}
           </ul>
         </li>
         <form class="d-flex" role="search">
@@ -35,7 +37,7 @@
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/myprofile">
-              {{ current_user.gname}}
+              {{ current_user.fname}} {{ current_user.lname}}
             </a>
            
           </li>          
